@@ -1,0 +1,180 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="e-commerce">
+    <meta name="keywords" content="html,css,bootstrap,javascript,python,django">
+    <meta name="founder" content="ekene akali">
+    <meta name="services" content="online store, online retail, online marketing, e-commerce, buisness to buisness, buisness to consumer, consumer to buisness">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>
+      {% block title %}
+      {% endblock %}
+    </title>
+    
+    <link rel="stylesheet" href="{% static 'frontend/css/style.css' %}">
+  
+    <link rel="stylesheet" href="{% static 'frontend/css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  </head>
+  <body>
+    <div class="head">
+      <span style="font-size: 30px; color:blue;">W</span>
+      <span style="font-size: 30px; color: blue;">a</span>
+      <span style="font-size: 30px; color: blue;">l</span>
+      <span style="font-size: 30px; color: blue;">t</span>
+      <span style="font-size: 30px; color: red;">r</span>
+      <span style="font-size: 30px; color: red;">a</span>
+      <span style="font-size: 30px; color: red;">d</span>
+      <span style="font-size: 30px; color: red;">e</span>.org
+      {% include 'frontend/search-result.html' %}
+      <a href="{% url 'frontend:add_post' %}"><img src="{% static 'frontend/images/cart.png' %}" style="float: left;" height="20px" width="20px" alt="img"></a>
+  </div>
+
+  <section id="siteMenu">
+    <div class="row">
+      <nav class="navbar navbar-inverse">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-target="#mainNav" data-toggle="collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="nav navbar-nav">
+            <li class="footer-color"><a href="{% url 'home' %}">Home</a></li>
+            <li class="footer-color"><a href="{% url 'frontend:register' %}">Register</a></li>
+            <li class="footer-color"><a href="{% url 'frontend:log_in' %}">Login</a></li>
+            <li class="footer-color"><a href="{% url 'frontend:view_video' %}">Videos</a></li>
+            {% if request.user.is_authenticated %}
+            <li class="footer-color"><a href="{% url 'frontend:add_post' %}">Add product</a></li>
+            <li class="footer-color"><a href="{% url 'frontend:view_post' %}">Edit product</a></li>
+            <li class="footer-color"><a href="{% url 'frontend:video' %}">Add videos</a></li>
+            <li class="footer-color"><a href="{% url 'frontend:user_video' %}">Edit video</a></li>
+            <li class="footer-color"><a href="{% url 'frontend:view_profile' %}">Edit profile</a></li>
+            <li class="footer-color"><a href="{% url 'frontend:confirm_logout' %}">Logout</a></li>
+            {% endif %}
+            
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </section>
+  <!-- END OF SITE MENU -->
+  {% if request.user.is_authenticated %}
+    {% else %}
+  <p>please <a href="{% url 'frontend:log_in' %}" class="btn btn-primary">Login</a> to add a product</p>
+  {% endif %}
+  
+  {% if request.user.is_authenticated %}
+  <p style="float:left; color:red"><i class="fa fa-user"></i>{{request.user.username}}:is active</p>
+  {% endif %}
+  
+      
+  
+        {% block content %}
+      {% endblock %}
+
+  <footer class="page-footer font-small blue pt-4">
+
+  <!-- Footer Links -->
+  <div class="container-fluid text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-md-6 mt-md-0 mt-3">
+
+        <!-- Content -->
+        {% if request.user.is_authenticated %}
+        <h5 class="footer-style text-uppercase"><i class="fa fa-user"></i>Welcome:{{ request.user.username }}...</h5>
+        
+        {% endif %}
+        <p class="footer-style">Our website is a platform for buying and selling...</p>
+
+        
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none pb-3">
+
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h5 class="footer-style text-uppercase">Links</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a class="footer-color" href="{% url 'frontend:about' %}">About</a>
+          </li>
+          <li>
+            <a class="footer-color" href="{% url 'frontend:term_condition' %}">Terms</a>
+          </li>
+          <li>
+            <a class="footer-color" href="{% url 'frontend:privacy' %}">Privacy policy</a>
+          </li>
+          <li>
+            <a class="footer-color" href="{% url 'frontend:contact_us' %}">Contact us</a>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h5 class="footer-style text-uppercase">Links</h5>
+
+        <ul class="list-unstyled">
+          {% if request.user.is_authenticated %}
+          <li>
+            <a class="footer-color" href="{% url 'frontend:view_user' %}">View users</a>
+          </li>
+          <li>
+            <a class="footer-color" href="{% url 'frontend:forget_password' %}">Forget password</a>
+          </li>
+          <l>
+            <a class="footer-color" href="{% url 'frontend:change_password' %}">Change password</a>
+          </li>
+          <li>
+            <a class="footer-color" href="mailto:waltrade42@gmail.com">Email us</a>
+          </li>
+          {% endif %}
+          
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+
+  <!-- Copyright -->
+  <div class="footer-style footer-copyright text-center py-3">© {{ current_year }} Copyright:
+    <a class="footer-color" href="#"> Waltrade.org</a>
+    <p><a class="footer-color" href="#top">Back to top</a></p>
+  </div>
+  
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
+
+  <script src="{% static 'frontend/js/jquery.js' %}"></script>
+  <script src="{% static 'frontend/js/bootstrap.min.js' %}"></script>
+
+    

@@ -1,0 +1,98 @@
+{% extends 'frontend/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    view_video
+{% endblock %}
+
+{% block content %}
+{% load social_share %}
+<center>
+  <div style="text-align: center; background-color: cadetblue; margin: 5px;">
+    <h1>Avoid risky transaction</h1><hr>
+
+    1:make sure you meet the buyer or the seller in a safe place before paying for the goods<br><br>
+    2:don't pay before the goods<br><br>
+    3:identify the person before TRANSACTION<br><br>
+    4:waltrade will not pay for any loss in TRANSACTION<br><br>
+</div>
+{% include 'frontend/ads.html' %}
+
+
+    <h1>Videos</h1>
+    <div class="container-fluid">
+        <div class="row">
+            {% if home %}
+                <div class="col-md-4">
+                  <video src="{{home.video.url}}" width="300px" height="200px" controls></video>
+                  <p>
+                   Time:{{home.created_at}}, Category:<a href="sport.html">{{home.category}}..</a>. 
+                   Posted By: <a href="#">{{home.created_by}}</a>.
+                   
+                 </p>
+                  <h3>{{home.pst_title}}</h3>
+                  <p>
+                     {{home.content }}  
+                  </p>
+                  
+                        {% post_to_facebook object_or_url %}
+                        {% post_to_whatsapp object_or_url %}
+                        {% post_to_twitter object_or_url %}
+    
+
+                    <h1 style="text-align: center;">Comment on this video product</h1><hr>
+          {% if messages %}
+            {% for mes in messages %}
+              <div class="alert alert-success">{{mes}}</div>
+            {% endfor %}
+          {% endif %}
+          {% if comment %}
+            {% for c in comment %}
+              <div style="background-color: cadetblue; padding: 10px; border-radius: 5px;">
+                <p>Name: {{c.name}}</p>
+                <p>Comment:{{c.comment}}</p>
+                <p>Created on:{{c.created_at}}</p>
+              </div><br><br>
+              {% endfor %}
+            {% endif %}
+
+        </div>
+        
+
+                
+      <form method="post">
+          <div class="form-group">
+            <label for="name">name</label><br><br>
+            <input type="text" name="name" required maxlength="50" id="name" class="form-control" placeholder="enter name">
+          </div><br>
+          <div class="form-group">
+            <label for="comment">comment</label><br><br>
+            <textarea name="comment" required placeholder="enter comment" class="form-control"></textarea><br><br>
+            <button class="btn btn-primary" type="submit">comment</button>
+            <button class="btn btn-primary" type="reset">reset</button>
+          </div>
+          {% csrf_token %}
+          
+          
+        </form>
+        
+      
+        </div>
+
+                </div>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+</center>
+
+    
+      
+    
+  
+
+{% endblock %}

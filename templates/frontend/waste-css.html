@@ -1,0 +1,76 @@
+<div class="nav">
+    <a class="gold" href="{% url 'home' %}" style="margin-left: 10px; color: white;">Home</a>
+    <a class="gold" href="{% url 'frontend:register' %}" style="margin-left: 10px; color: white;">SignUp</a>
+    <a class="gold" href="{% url 'frontend:log_in' %}" style="margin-left: 10px; color: white;">Login</a>
+    <a class="gold" href="{% url 'frontend:add_post' %}" style="margin-left: 10px; color: white;">AddProducts</a>
+    <a class="gold" href="{% url 'frontend:view_post' %}" style="margin-left: 10px; color: white;">EditProducts</a>
+    <a class="gold" href="{% url 'frontend:view_profile' %}" style="margin-left: 10px; color: white;">EditProfile</a>
+    <a class="gold" href="{% url 'frontend:advertisement' %}" style="margin-left: 10px; color: white;">AdvertisewithUS</a>
+    <a class="gold" href="{% url 'frontend:view_video' %}" style="margin-left: 10px; color: white;">Videos</a>
+    <a class="gold" href="{% url 'frontend:user_video' %}" style="margin-left: 10px; color: white;">EditVideos</a>
+    </div>
+    
+  {% if request.user.is_authenticated %}
+  <span style="color: goldenrod;"><i class="fa fa-user"></i>{{request.user.username}}:is active</span>
+  
+  {% else %}
+  {% endif %}
+  
+
+
+
+
+
+
+  <footer style="background-color: green; text-align: center; margin-top: 20px; margin: 10px; border-radius: 10px;">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4">
+          <li><a class="footercolor" href="{% url 'frontend:about' %}"><i class="fa fa-home"></i>about us</a></li><br>
+                          <li><a class="footercolor" href="{% url 'frontend:privacy' %}"><i class="fa fa-bed"></i>privacy-policy</a></li><br>
+                        <a class="footercolor" href="http://www.facebook.com/waltrade"><i class="fa fa-facebook"></i>like us on facebook</a><br><br>
+                        <li><a class="footercolor" href="#">link</a></li><br>
+                        
+          </div>
+        <div class="col-md-4">
+          <li><a class="footercolor" href="{% url 'frontend:contact_us' %}"><i class="fa fa-phone">contact us</i></a></li><br>
+              <li><a class="footercolor" href="{% url 'frontend:change_password' %}"><i class="fa fa-key"></i>change-password</a></li><br>
+              <a class="footercolor" href="{% url 'frontend:log_in' %}"><i class="fa fa-cloud"></i>log-in</a><br><br>
+              <li><a class="footercolor" href="{% url 'frontend:term_condition' %}">terms and condition</a></li><br>
+            </div>
+        <div class="col-md-4 offset-col-md-4">
+          <a class="footercolor" href="{% url 'frontend:confirm_logout' %}"><i class="fa fa-refresh"></i>log-out</a><br><br>
+                <a class="footercolor" href="{% url 'frontend:view_user' %}"><i class="fa fa-user"></i>view-users</a><br><br>
+                <a class="footercolor" href="{% url 'frontend:register' %}"><i class="fa fa-pencil"></i>sign-up</a><br><br>
+                <li><a class="footercolor" href="{% url 'frontend:forget_password' %}"><i class="fa fa-key"></i>forget-password</a></li>
+        </div>
+
+  
+            
+                
+
+        
+      </div>
+    </div>
+    
+</footer>
+<div class="footer2">
+  <p class="white">Waltrade {{current_year}} Production</p>
+  <a class="white" href="http://www.waltrade.org">www.waltrade.org</a>
+<p><a class="white" href="#top">back to top</a></p>
+
+</div>
+  
+
+{% post_to_facebook object_or_url %}
+          {% post_to_whatsapp object_or_url %}
+          {% post_to_twitter object_or_url %}
+
+
+
+
+  
+  <script src="{% static 'frontend/js/jquery.js' %}"></script>
+  <script src="{% static 'frontend/js/bootstrap.min.js' %}"></script>
+</body>
+</html>

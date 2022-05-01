@@ -1,0 +1,31 @@
+{% extends 'frontend/base.html' %}
+
+{% load static %}
+
+{% block title %}
+display_image
+{% endblock %}
+
+{% block content %}
+    <table class="table table-bordered">
+        <tr>
+        <th>User</th>
+        <th>Image</th>
+        <th colspan="2">Action</th>
+        </tr>
+        <tr>
+            {% if post %}
+                {% for x in post %}
+                    
+                    <td>{{x.user}}</td>
+                    <td><img src="{{x.image.url}}" alt="img" height="200px" width="200px"></td>
+                    <td><a href="{% url 'frontend:edit_pic' x.id %}" class="btn btn-primary">edit</a></td>
+                    <td><a href="{% url 'frontend:delete_pic' x.id %}" class="btn btn-primary">delete</a></td>
+                        <p><a href="{% url 'frontend:view_profile' %}" class="btn btn-primary">go back</a></p>
+            
+                {% endfor %}
+            
+                {% endif %}
+        </tr>
+    </table>
+{% endblock %}

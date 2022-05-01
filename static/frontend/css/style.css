@@ -1,0 +1,72 @@
+.head{
+	display: block;
+    background-color: yellow;
+    text-align: center;
+    height: 130px;
+}
+#siteMenu .navbar{
+	margin-top: 15px;
+	margin-bottom: 10;
+	border-radius:0;
+	background-color:green;
+	border-color:blue;
+}
+
+#mainNav .navbar-nav .active a{
+	background-color:orange;
+}
+
+#mainNav .navbar-nav a{
+	color:#fff;
+	font-weight: bold;
+	
+}
+
+/* SLYDER STYLIG START HERE */
+.carousel-inner{
+	background-color: #338908;
+}
+.carousel-inner  .img-responsive{
+	width:100%;
+	height:auto;
+}
+
+.carousel-text{
+	background-color:rgba(9, 43, 0, 0.6);
+	color:#fff;
+	width:80%;
+	padding:10px;
+	margin-top:80px;
+	font-family:'amaranthBold', sans-serif;
+}
+
+.carousel-text h3{
+	font-family:'amaranthBold', sans-serif;
+}
+
+	/* SLYDER STYLING ENDS HERE */
+
+/* FOOTER STYLING */
+
+.page-footer{
+	background-color: blue;
+	margin-top: 10px;
+}
+
+.footer-color:hover{
+	background-color: orange;
+}
+
+.footer-color{
+	color: white;
+}
+
+.footer-style{
+	color: white;
+}
+
+/* CARD STYLING */
+
+.touch{
+	margin-top: 10px;
+}

@@ -1,0 +1,35 @@
+{% extends 'frontend/base.html' %}
+
+{% load static %}
+
+{% block title %}
+  addpost
+{% endblock %}
+
+{% block content %}
+    <center>
+        <p><h1>Add product here</h1></p>
+        <p>By adding a product here you agree to our <a href="{% url 'frontend:term_condition' %}" class="btn btn-success">terms and condition</a></p>
+        
+                {% if messages %}
+                    {% for mes in messages %}
+                        <div class="alert alert-success">{{mes}}</div>
+                    {% endfor %}
+                {% endif %}
+        <form method="post" enctype="multipart/form-data">
+            <table class="table table-bordered">
+                {{form.as_table}}
+        
+            </table>
+            <button type="submit" class="btn btn-primary">add product</button>
+            <button type="reset" class="btn btn-primary">reset</button>
+            {% csrf_token %}
+
+        </form>
+        
+        
+    </center>
+ 
+
+
+{% endblock %}
